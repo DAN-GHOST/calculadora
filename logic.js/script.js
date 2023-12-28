@@ -14,6 +14,7 @@ function multiplicar(a,b){
     return a*b;
 }
 
+/*
 let operacion = prompt("Por favor, ingresa la operación que quieres realizar. +, -, x, /");
 let arr = operacion.split('');
 
@@ -63,3 +64,4 @@ switch(simbolo){
         alert(dividir(getNumberOne,getNumbertwo));
     break;
 }
+*/

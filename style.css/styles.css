@@ -1,0 +1,34 @@
+.contenedor{
+    border: 0.1px solid black;
+}
+.contenedor_botnes_row{
+    border: 0.1px solid blue;
+}
+
+.contenedor_principal,
+.contenedor_pantallas,
+.contenedor_pincipal_botones,
+.contenedor_botones,
+.contenedor_fila_botones_c_x,
+.contenedor_numeros_y_punto_e_igual,
+.columna_1,
+.columna_2,
+.columna_3,
+.contenedor_columna_operaciones,
+.contenedor_botnes_row,
+.boton_c_borra_todo,
+.boton_x_borra_un_elemento{
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.contenedor_principal,
+.contenedor_pantallas,
+.columna_1,
+.columna_2,
+.columna_3,
+.columna_4,
+.contenedor_botones,
+.contenedor_columna_operaciones{
+    flex-direction: column;
+}
