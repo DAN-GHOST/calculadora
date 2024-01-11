@@ -16,11 +16,49 @@ function multiplicar(a,b){
     return a*b;
 }
 
-function getNumeroAndSimbolo(event){
+function getNumero(event){
     if(!(event.target.value === undefined) && txtEtiquetaP.textContent === ''){
         txtEtiquetaP.textContent = event.target.value;
     }else if(event.target.value !== undefined){
+        if(btnMostrarSolucion.textContent === 'NaN'){
+            btnMostrarSolucion.textContent = '';
+        }else if(btnMostrarSolucion.textContent !== ''){
+            btnMostrarSolucion.textContent = '';
+            txtEtiquetaP.textContent = '';
+        }
         txtEtiquetaP.textContent += event.target.value;
+    }
+}
+
+function getSimbolo(event){
+    if(!(event.target.value === undefined) && txtEtiquetaP.textContent === ''){
+        txtEtiquetaP.textContent = event.target.value;
+    }else if(event.target.value !== undefined){
+        if(btnMostrarSolucion.textContent === 'NaN'){
+            btnMostrarSolucion.textContent = '';
+            txtEtiquetaP.textContent = '';
+        }else if(btnMostrarSolucion.textContent !== ''){
+            txtEtiquetaP.textContent = btnMostrarSolucion.textContent;
+            btnMostrarSolucion.textContent = '';
+        }
+        txtEtiquetaP.textContent += event.target.value;
+    }
+}
+
+function evaluarErrores(arr){
+    for(let i = 0; i < arr.length; i++){
+        if((arr[i] === '+' || arr[i] === '-' || arr[i] === 'x' || arr[i] === '/') && arr[i+1] === '.'){
+            return 'error';
+        }
+        if((arr[i] === '+' && arr[i+1] === '+') || (arr[i] === '-' && arr[i+1] === '-') || (arr[i] === '/' && arr[i+1] === '/') || (arr[i] === 'x' && arr[i+1] === 'x') || (arr[i] === '.' && arr[i+1] === '.')){
+            return 'error';
+        }
+        if((arr[i] === '-' && arr[i+1] === '+') || (arr[i] === '+' && arr[i+1] === '-') || (arr[i] === '/' && arr[i+1] === '-') || (arr[i] === '-' && arr[i+1] === '/') || (arr[i] === '/' && arr[i+1] === '+') || (arr[i] === '+' && arr[i+1] === '/') || (arr[i] === 'x' && arr[i+1] === '+') || (arr[i] === '+' && arr[i+1] === 'x') || (arr[i] === 'x' && arr[i+1] === '-') || (arr[i] === '-' && arr[i+1] === 'x') ||(arr[i] === '.' && arr[i+1] === '/') || (arr[i] === '/' && arr[i+1] === '.') || (arr[i] === '.' && arr[i+1] === 'x') || (arr[i] === 'x' && arr[i+1] === '.')){
+            return 'error';
+        }
+        if((arr[i] === '/' && arr[i+1] === 'x') || (arr[i] === 'x' && arr[i+1] === '/')){
+            return 'error';
+        }
     }
 }
 
@@ -29,26 +67,27 @@ function resultadoFinal(valorString){
     let simbolo =[],
     arr_numbers = [],
     arr_numbers_end =[];
+    let evaluar = null;
     if(valorString.length === 0 || valorString[0] === '.'){
         return 'error';
     }else{
-        for(let i = 0; i < arr.length; i++){
-            if((arr[i] === '+' || arr[i] === '-' || arr[i] === 'x' || arr[i] === '/') && arr[i+1] === '.'){
-                return 'error';
-            }
-        }
-        for(let i = 0; i < arr.length; i++){
-            if(i === 0 && arr[i] === '-'){
-                arr_numbers.push(arr[i]);
-            }else if(arr[i] === '+' || arr[i] === '-' || arr[i] === 'x' || arr[i] === '/'){
-                simbolo.push(arr[i]);
-                arr_numbers_end.push(+(arr_numbers.join('')));
-                arr_numbers = [];
-            }else{
-                arr_numbers.push(arr[i]);
-                if(i === arr.length-1){
+        evaluar = evaluarErrores(arr);
+        if(evaluar === 'error'){
+            return evaluar;
+        }else{
+            for(let i = 0; i < arr.length; i++){
+                if(i === 0 && arr[i] === '-'){
+                    arr_numbers.push(arr[i]);
+                }else if(arr[i] === '+' || arr[i] === '-' || arr[i] === 'x' || arr[i] === '/'){
+                    simbolo.push(arr[i]);
                     arr_numbers_end.push(+(arr_numbers.join('')));
                     arr_numbers = [];
+                }else{
+                    arr_numbers.push(arr[i]);
+                    if(i === arr.length-1){
+                        arr_numbers_end.push(+(arr_numbers.join('')));
+                        arr_numbers = [];
+                    }
                 }
             }
         }
@@ -94,43 +133,44 @@ let btnMostrarSolucion = document.querySelector('.txtMostrarSolucion');
 
 //botonoes con los numeros.
 let btnNumero_0 = document.querySelector('.numero_0');
-btnNumero_0.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_0.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_1 = document.querySelector('.numero_1');
-btnNumero_1.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_1.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_2 = document.querySelector('.numero_2');
-btnNumero_2.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_2.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_3 = document.querySelector('.numero_3');
-btnNumero_3.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_3.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_4 = document.querySelector('.numero_4');
-btnNumero_4.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_4.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_5 = document.querySelector('.numero_5');
-btnNumero_5.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_5.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_6 = document.querySelector('.numero_6');
-btnNumero_6.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_6.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_7 = document.querySelector('.numero_7');
-btnNumero_7.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_7.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_8 = document.querySelector('.numero_8');
-btnNumero_8.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_8.addEventListener('click',(event)=>{getNumero(event)});
 let btnNumero_9 = document.querySelector('.numero_9');
-btnNumero_9.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnNumero_9.addEventListener('click',(event)=>{getNumero(event)});
 
 // botonoes con los simbolos para operar.
 let btnPunto = document.querySelector('.punto');
-btnPunto.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnPunto.addEventListener('click',(event)=>{getSimbolo(event)});
 let btnDividir = document.querySelector('.dividir');
-btnDividir.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnDividir.addEventListener('click',(event)=>{getSimbolo(event)});
 let btnMultiplicar = document.querySelector('.multiplicar');
-btnMultiplicar.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnMultiplicar.addEventListener('click',(event)=>{getSimbolo(event)});
 let btnRestar = document.querySelector('.restar');
-btnRestar.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnRestar.addEventListener('click',(event)=>{getSimbolo(event)});
 let btnSumar = document.querySelector('.sumar');
-btnSumar.addEventListener('click',(event)=>{getNumeroAndSimbolo(event)});
+btnSumar.addEventListener('click',(event)=>{getSimbolo(event)});
 
 //botones para limpiar la pantalla de operaciones y resultado.
 let btnlimpiarTodo = document.querySelector('.boton_c_borra_todo');
 btnlimpiarTodo.addEventListener('click',(event)=>{
     if(event.target.value !== undefined){
         txtEtiquetaP.textContent = '';
+        btnMostrarSolucion.textContent = '';
     }
 });
 let btnlimpiarSoloUno = document.querySelector('.boton_x_borra_un_elemento');
@@ -139,8 +179,9 @@ btnlimpiarSoloUno.addEventListener('click',(event)=>{
         txtEtiquetaP.textContent = txtEtiquetaP.textContent.substring(0, txtEtiquetaP.textContent.length - 1);
     }
 });
-
 let btnIgual =  document.querySelector('.igual');
-btnIgual.addEventListener('click',()=>{
-    btnMostrarSolucion.textContent = resultadoFinal(txtEtiquetaP.textContent).toString();
+btnIgual.addEventListener('click',(event)=>{
+    if(event.target.value !== undefined){
+        btnMostrarSolucion.textContent = resultadoFinal(txtEtiquetaP.textContent).toString();
+    }
 });
