@@ -1,11 +1,3 @@
-.contenedor{
-    border: 0.1px solid black;
-}
-.contenedor_botnes_row{
-    border: 0.1px solid blue;
-}
-
-.contenedor_principal,
 .contenedor_pantallas,
 .contenedor_pincipal_botones,
 .contenedor_botones,
@@ -17,7 +9,9 @@
 .contenedor_columna_operaciones,
 .contenedor_botnes_row,
 .boton_c_borra_todo,
-.boton_x_borra_un_elemento{
+.boton_x_borra_un_elemento,
+.txtMostrarSelecionesAOperar,
+.txtMostrarSolucion{
     display: flex;
     flex: 1 1 auto;
 }
@@ -31,4 +25,63 @@
 .contenedor_botones,
 .contenedor_columna_operaciones{
     flex-direction: column;
+}
+
+.contenedor_principal,
+.btn,
+body{
+    display: flex;
+}
+
+.btn,
+.contenedor_fila_botones_c_x .btn,
+.pantalla_operaciones,
+.pantalla_resultado{
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.txtMostrarSelecionesAOperar,
+.txtMostrarSolucion{
+    height: 27px;
+    font-size: 27px;
+}
+
+body{
+    justify-content: center;
+    background: url(../img/surtido-papeleria-material-natural.jpg) no-repeat;
+    background-size: cover;
+}
+.contenedor_principal{
+    width: 250px;
+    height: 460px;
+    background-color: darkgray;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 100px 10px;
+}
+
+.btn{
+    align-items: center;
+    font-size: 18px;
+    background: rgb(200, 200, 200);
+    width: 55px;
+    padding: 15px;
+    margin: 5px 3.5px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
+    border: none;
+}
+
+.btn :active{
+    background-color: rgb(255, 255, 255);
+}
+
+.contenedor_pantallas{
+    background: burlywood;
+    border-radius: 10px;
 }
