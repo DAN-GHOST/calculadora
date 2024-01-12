@@ -63,6 +63,9 @@ function evaluarErrores(arr){
     if(arr[arr.length-1] === '.'){
         return 'error';
     }
+    if(arr[0] === 'x' || arr[0] === '/' ){
+        return 'error';
+    }
 }
 
 function resultadoFinal(valorString){
