@@ -60,6 +60,9 @@ function evaluarErrores(arr){
             return 'error';
         }
     }
+    if(arr[arr.length-1] === '.'){
+        return 'error';
+    }
 }
 
 function resultadoFinal(valorString){

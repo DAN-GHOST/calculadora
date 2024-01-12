@@ -1,3 +1,10 @@
+body{
+    font-family: 'Arial','Times New Roman', Times, serif;
+    justify-content: center;
+    background: url(../img/surtido-papeleria-material-natural.jpg) no-repeat;
+    background-size: cover;
+}
+
 .contenedor_pantallas,
 .contenedor_pincipal_botones,
 .contenedor_botones,
@@ -11,7 +18,11 @@
 .boton_c_borra_todo,
 .boton_x_borra_un_elemento,
 .txtMostrarSelecionesAOperar,
-.txtMostrarSolucion{
+.txtMostrarSolucion,
+.btn,
+.contenedor_fila_botones_c_x .btn,
+.pantalla_operaciones,
+.pantalla_resultado{
     display: flex;
     flex: 1 1 auto;
 }
@@ -33,25 +44,27 @@ body{
     display: flex;
 }
 
-.btn,
-.contenedor_fila_botones_c_x .btn,
-.pantalla_operaciones,
-.pantalla_resultado{
-    display: flex;
-    flex: 1 1 auto;
-}
-
 .txtMostrarSelecionesAOperar,
 .txtMostrarSolucion{
-    height: 27px;
-    font-size: 27px;
+    align-items: flex-end;
+    height: 35px;
+    font-size: 20px;
 }
 
-body{
-    justify-content: center;
-    background: url(../img/surtido-papeleria-material-natural.jpg) no-repeat;
-    background-size: cover;
+.txtMostrarSelecionesAOperar{
+    overflow-x: scroll;
 }
+
+.txtMostrarSelecionesAOperar::-webkit-scrollbar{
+background: none;
+}
+
+.txtMostrarSelecionesAOperar::-webkit-scrollbar-thumb{
+background:rgb(204, 204, 204);
+border-radius: 20px;
+border: 2px solid rgb(255, 192, 110); 
+}
+
 .contenedor_principal{
     width: 250px;
     height: 460px;
@@ -77,11 +90,15 @@ body{
     border: none;
 }
 
-.btn :active{
-    background-color: rgb(255, 255, 255);
+.btn:hover{
+    background-color: rgb(238, 238, 238);
+}
+.btn:active{
+    background-color: bisque;
 }
 
 .contenedor_pantallas{
-    background: burlywood;
+    background: rgb(255, 192, 110);
     border-radius: 10px;
+    padding: 0px 5px;
 }
